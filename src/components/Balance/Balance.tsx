@@ -66,4 +66,3 @@ const Balance: React.FC<BalanceProps> = ({ sendAction }) => {
 };
 
 export default Balance;
-

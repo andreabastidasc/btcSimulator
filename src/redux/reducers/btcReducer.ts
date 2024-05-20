@@ -7,8 +7,8 @@ import {
 
 type BtcAction = SendBtcAction;
 
-const initialState: BtcState = {
-    balance: 150,
+export const initialState: BtcState = {
+    balance: 500,
     transactions: [],
 };
 
