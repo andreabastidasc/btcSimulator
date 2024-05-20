@@ -1,7 +1,7 @@
 import {
     BtcState,
+    SendBtcAction,
     Transaction,
-    SendBtcAction
 } from "../../typing/models";
 
 
@@ -22,7 +22,7 @@ const btcReducer = (state: BtcState = initialState, action: BtcAction): BtcState
                 address,
                 amount,
                 fee,
-                status: newBalance >= 0 ? 'success' : 'failed',
+                status: newBalance >= 0 ? 'success' : 'error',
                 date: new Date().toLocaleString(),
             };
             return {
