@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+# Aplicación de Envío de Bitcoins (BTC) en React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción del Proyecto
 
-## Available Scripts
+Esta aplicación simula el envío de Bitcoins (BTC) y permite a los usuarios gestionar su balance, enviar BTC a direcciones específicas y consultar el historial de operaciones. Desarrollada en React, la aplicación cumple con los siguientes requisitos funcionales:
 
-In the project directory, you can run:
+### Funcionalidades Principales
 
-### `npm start`
+1. **Visualización del Balance**:
+    - El usuario puede ver su balance disponible en BTC, junto con su equivalente en pesos (ARS).
+    - Ejemplo: 1 BTC = 56,633,060 ARS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. **Envío de BTC**:
+    - El usuario puede enviar BTC a una dirección específica.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. **Feedback del Envío**:
+    - El usuario recibe un mensaje indicando si el envío fue exitoso o no.
 
-### `npm test`
+4. **Historial de Operaciones**:
+    - El usuario puede ver el historial de todas las operaciones realizadas.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. **Detalle de Operaciones**:
+    - Se muestra el detalle de cada operación, incluyendo la fecha, monto enviado, dirección de destino, estado de la operación (exitosa/no exitosa) y ID de la operación.
 
-### `npm run build`
+6. **Actualización del Balance**:
+    - El balance del usuario se actualiza automáticamente después de cada operación.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Campos para el Envío de BTC
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Dirección BTC (destino)**.
+- **Monto a enviar (en BTC)**.
+- **Comisión de la red** (solo lectura), que se sumará al monto total. Esta comisión será un valor aleatorio entre 0.0001 y 0.0002 BTC.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Instrucciones para Levantar el Proyecto
 
-### `npm run eject`
+### Clonar el Repositorio
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+git clone https://github.com/tu-usuario/ripio-evaluacion-tecnica.git
+cd ripio-evaluacion-tecnica
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Configuración del Proyecto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Crea un archivo .env en la raíz del proyecto y define las siguientes variables de entorno:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+REACT_APP_API_URL="https://ripio.com/api/v1"
+```
 
-## Learn More
+### Ejecución en Desarrollo
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+La aplicación estará disponible en http://localhost:3000.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Advertencia sobre la API y Manejo de CORS
+
+La API de Ripio para consultar las tasas de cambio puede generar un error de CORS que restringe las solicitudes HTTP que se originan desde un origen diferente al del servidor. 
+
+Para solucionar este problema, se pueden aplicar diversas estrategias, como configurar el servidor de la API para permitir solicitudes CORS, utilizar un proxy inverso que agregue los encabezados CORS necesarios, o bien, recurrir a herramientas como extensiones de navegador que permitan CORS. Cada enfoque tiene sus propias ventajas y consideraciones de seguridad, y la elección dependerá del contexto específico del proyecto y de las restricciones del servidor.
+
+En este caso se utilizó un extensión de chrome llamada: CORS Unblock (https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=es)
