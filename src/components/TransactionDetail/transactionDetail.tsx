@@ -1,10 +1,6 @@
 import {
-    Avatar,
-    Button,
-    Heading,
     Flex,
-    Text,
-    useDisclosure
+    Text
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
