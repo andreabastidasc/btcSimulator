@@ -23,7 +23,6 @@ const Balance: React.FC<BalanceProps> = ({ sendAction }) => {
                 const rate = await getExchangeRate();
                 const parsedRate = parseInt(rate.rates.ARS_BUY)
 
-                console.log(rate)
                 setExchangeRate(parsedRate)
             } catch (error) {
                 console.error('Error fetching exchange rate', error);
