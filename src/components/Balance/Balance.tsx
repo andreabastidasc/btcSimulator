@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { Button, Heading, Text } from '@chakra-ui/react';
 import { getExchangeRate } from '../../services/RatesService/rates.service';
+import styles from './Balance.module.scss';
 
 interface BalanceProps {
     balance: number;
@@ -15,7 +18,7 @@ const Balance: React.FC<BalanceProps> = ({ balance, sendAction }) => {
                 const rate = await getExchangeRate();
                 const parsedRate = parseInt(rate.rates.ARS_BUY)
 
-                console.log(rate)
+                console.log(rate, 'RATES')
                 setExchangeRate(parsedRate)
             } catch (error) {
                 console.error('Error fetching exchange rate', error);
@@ -30,11 +33,27 @@ const Balance: React.FC<BalanceProps> = ({ balance, sendAction }) => {
     }
 
     return (
-        <div>
-            <h2>Balance</h2>
-            <p>{balance} BTC</p>
-            <p>Total equivalente en ARS: {getBalanceInARS(balance)}</p>
-            <button onClick={() => sendAction(true)}>Enviar</button>
+        <div className={styles.balance}>
+            <Heading
+                as='h2'
+                size='md'
+                noOfLines={1}
+                color='purple.700'
+            >
+                Balance
+            </Heading>
+            <div>
+                <Text fontSize='xl'>{balance} BTC</Text>
+                <Text fontSize='md'>Total equivalente en ARS: {getBalanceInARS(balance)} $ARS</Text>
+            </div>
+            <Button
+                background='#5477EA'
+                color='white'
+                colorScheme='pink'
+                onClick={() => sendAction(true)}
+            >
+                Enviar
+            </Button>
         </div>
     );
 };

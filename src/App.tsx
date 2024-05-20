@@ -27,7 +27,7 @@ const App: React.FC = () => {
                     <div className='app__content'>
                         <Heading
                             as='h1'
-                            color='purple.500'
+                            color='#5477EA'
                             size='xl'
                             noOfLines={1}
                             textAlign='center'
