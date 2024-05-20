@@ -4,6 +4,8 @@
 
 https://main--btc-transfer-simulator.netlify.app/
 
+https://github.com/andreabastidasc/btcSimulator/assets/68307029/583315c2-7abf-4493-bdc3-58c2245618c5
+
 ## Descripción del Proyecto
 
 Esta aplicación simula el envío de Bitcoins (BTC) y permite a los usuarios gestionar su balance, enviar BTC a direcciones específicas y consultar el historial de operaciones. Desarrollada en React, la aplicación cumple con los siguientes requisitos funcionales:
