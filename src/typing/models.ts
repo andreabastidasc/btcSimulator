@@ -3,7 +3,7 @@ export interface Transaction {
     address: string;
     amount: number;
     fee: number;
-    status: 'success' | 'failed';
+    status: 'success' | 'error';
     date: string;
 }
 
