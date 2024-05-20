@@ -1,4 +1,11 @@
-import React from 'react';
+import {
+    Avatar,
+    Button,
+    Heading,
+    Flex,
+    Text,
+    useDisclosure
+} from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -16,19 +23,37 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transactionId }) 
     );
 
     if (!transaction) {
-        return <p>Transacción no encontrada.</p>;
+        return (
+            <Text fontSize='md'>
+                Transacción no encontrada.
+            </Text>
+        )
     }
 
     return (
-        <div>
-            <h2>Detalle de transación #{transaction.id}</h2>
-            <p>ID: {transaction.id}</p>
-            <p>Fecha: {transaction.date}</p>
-            <p>Monto: {transaction.amount} BTC</p>
-            <p>Dirección BTC: {transaction.address}</p>
-            <p>Status: {transaction.status}</p>
-            <p>Comisión: {transaction.fee} BTC</p>
-        </div>
+        <Flex
+            flexDirection='column'
+            gap={2}
+        >
+            <Text fontSize='md'>
+                ID: {transaction.id}
+            </Text>
+            <Text fontSize='md'>
+                Fecha: {transaction.date}
+            </Text>
+            <Text fontSize='md'>
+                Monto: {transaction.amount} BTC
+            </Text>
+            <Text fontSize='md'>
+                Dirección BTC: {transaction.address}
+            </Text>
+            <Text fontSize='md'>
+                Status: {transaction.status}
+            </Text>
+            <Text fontSize='md'>
+                Comisión: {transaction.fee} BTC
+            </Text>
+        </Flex>
     );
 };
 

@@ -1,4 +1,8 @@
-import { useEffect, useState } from 'react';
+import {
+    useEffect,
+    useState
+} from 'react';
+import { useSelector } from 'react-redux';
 import {
     Button,
     FormControl,
@@ -9,6 +13,7 @@ import {
     useToast
 } from '@chakra-ui/react';
 
+import { BtcState } from '../../typing/models';
 import styles from './sendBtc.module.scss'
 
 interface SendBTCProps {
@@ -17,18 +22,32 @@ interface SendBTCProps {
 }
 
 const SendBTC: React.FC<SendBTCProps> = ({ sendBTC, showForm }) => {
+    const balance = useSelector((state: BtcState) => state.balance);
+    const toast = useToast()
     const [address, setAddress] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
     const [fee, setFee] = useState<number>(0);
-    const toast = useToast()
 
     useEffect(() => {
         const calculatedFee = parseFloat((Math.random() * (0.0002 - 0.0001) + 0.0001).toFixed(5));
+
         setFee(calculatedFee);
     }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        const totalAmount = parseFloat(amount) + fee;
+        if (totalAmount > balance) {
+            toast({
+                title: 'Error',
+                description: 'No es posible transferir esa cantidad. Intenta con un monto menor.',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+                position: 'top'
+            });
+            return;
+        }
         const status = sendBTC(address, parseFloat(amount), fee);
         showForm(false);
         toast({
@@ -37,7 +56,7 @@ const SendBTC: React.FC<SendBTCProps> = ({ sendBTC, showForm }) => {
             status: status,
             duration: 9000,
             isClosable: true,
-            position: 'top-right'
+            position: 'top'
         });
     };
 

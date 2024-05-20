@@ -50,6 +50,7 @@ const TransactionHistory = () => {
                 ) : (
                     transactions.map((tx: Transaction) => (
                         <Button
+                            key={tx.id}
                             border='2px solid'
                             borderColor='gray.200'
                             colorScheme='gray'

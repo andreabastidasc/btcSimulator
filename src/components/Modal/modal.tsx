@@ -21,6 +21,8 @@ const ModalComponent: React.FC<ModalProps> = ({ children, isOpen, onClose, title
     return (
         <>
             <Modal
+                colorScheme='purple'
+                variant='purple'
                 isOpen={isOpen}
                 onClose={onClose}
             >
@@ -32,13 +34,14 @@ const ModalComponent: React.FC<ModalProps> = ({ children, isOpen, onClose, title
                         {children}
                     </ModalBody>
                     <ModalFooter>
-                    <Button
-                        colorScheme='blue'
-                        mr={3}
-                        onClick={onClose}
-                    >
-                        Cerrar
-                    </Button>
+                        <Button
+                            colorScheme='purple'
+                            mr={3}
+                            w='100%'
+                            onClick={onClose}
+                        >
+                            Cerrar
+                        </Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
