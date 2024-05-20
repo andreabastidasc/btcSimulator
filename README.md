@@ -1,5 +1,9 @@
 # Aplicación de Envío de Bitcoins (BTC) en React
 
+# Live demo
+
+https://main--btc-transfer-simulator.netlify.app/
+
 ## Descripción del Proyecto
 
 Esta aplicación simula el envío de Bitcoins (BTC) y permite a los usuarios gestionar su balance, enviar BTC a direcciones específicas y consultar el historial de operaciones. Desarrollada en React, la aplicación cumple con los siguientes requisitos funcionales:
@@ -62,4 +66,4 @@ La API de Ripio para consultar las tasas de cambio puede generar un error de COR
 
 Para solucionar este problema, se pueden aplicar diversas estrategias, como configurar el servidor de la API para permitir solicitudes CORS, utilizar un proxy inverso que agregue los encabezados CORS necesarios, o bien, recurrir a herramientas como extensiones de navegador que permitan CORS. Cada enfoque tiene sus propias ventajas y consideraciones de seguridad, y la elección dependerá del contexto específico del proyecto y de las restricciones del servidor.
 
-En este caso se utilizó un extensión de chrome llamada: CORS Unblock (https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=es)
+En este caso se utilizó un extensión de chrome llamada: CORS Unblock (https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=es). Se debe activar para ver el deploy correctamente y para levantar el proyecto localmente.
