@@ -1,6 +1,9 @@
 import {
+    Box,
     Button,
     Heading,
+    Flex,
+    Text,
     useDisclosure
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons'
@@ -36,9 +39,14 @@ const TransactionHistory = () => {
             >
                 Movimientos
             </Heading>
-            <div>
+            <Flex
+                flexDirection='column'
+                gap={5}
+            >
                 {transactions.length === 0 ? (
-                    <p>No hay transacciones disponibles.</p>
+                    <Text fontSize='md'>
+                        No hay transacciones disponibles.
+                    </Text>
                 ) : (
                     transactions.map((tx: Transaction) => (
                         <div key={tx.id}>
@@ -59,10 +67,12 @@ const TransactionHistory = () => {
                     {selectedTransactionId !== null ? (
                         <TransactionDetail transactionId={selectedTransactionId} />
                     ) : (
-                        <p>No se ha encontrado la transacción. Intenta más tarde.</p>
+                        <Text fontSize='md'>
+                            No se ha encontrado la transacción. Intenta más tarde.
+                        </Text>
                     )}
                 </ModalComponent>
-            </div>
+            </Flex>
         </div>
     );
 };

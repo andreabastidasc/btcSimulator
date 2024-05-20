@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react';
+import {
+    useEffect,
+    useState
+} from 'react';
+import { useSelector } from 'react-redux';
 
+import { BtcState } from '../../typing/models';
 import { Button, Heading, Text } from '@chakra-ui/react';
 import { getExchangeRate } from '../../services/RatesService/rates.service';
 import styles from './Balance.module.scss';
 
 interface BalanceProps {
-    balance: number;
     sendAction: (value: boolean) => void;
 }
 
-const Balance: React.FC<BalanceProps> = ({ balance, sendAction }) => {
+const Balance: React.FC<BalanceProps> = ({ sendAction }) => {
     const [exchangeRate, setExchangeRate] = useState<number | null>(null);
+    const balance = useSelector((state: BtcState) => state.balance);
 
     useEffect(() => {
         const fetchExchangeRate = async () => {
@@ -44,7 +49,9 @@ const Balance: React.FC<BalanceProps> = ({ balance, sendAction }) => {
             </Heading>
             <div>
                 <Text fontSize='xl'>{balance} BTC</Text>
-                <Text fontSize='md'>Total equivalente en ARS: {getBalanceInARS(balance)} $ARS</Text>
+                <Text fontSize='md'>
+                    Total equivalente en ARS: {getBalanceInARS(balance)} $ARS
+                </Text>
             </div>
             <Button
                 background='#5477EA'

@@ -1,4 +1,4 @@
-import { ChakraProvider, Heading, Image } from '@chakra-ui/react'
+import { Button, ChakraProvider, Heading } from '@chakra-ui/react'
 import { Provider } from 'react-redux';
 import { useState } from 'react';
 
@@ -18,8 +18,6 @@ const App: React.FC = () => {
         return transactions[0]?.status;
     };
 
-    const balance = store.getState().balance;
-
     return (
         <Provider store={store}>
             <ChakraProvider>
@@ -35,20 +33,22 @@ const App: React.FC = () => {
                             BTC Simulator
                         </Heading>
                         <Balance
-                            balance={balance}
                             sendAction={setShowSendForm}
                         />
                         {showSendForm && (
-                            <div>
+                            <div className='app__content__form'>
                                 <SendBTC
                                     sendBTC={sendTransfer}
                                     showForm={setShowSendForm}
                                 />
-                                <button
+                                <Button
+                                    background='pink.400'
+                                    color='white'
+                                    colorScheme='purple'
                                     onClick={() => setShowSendForm(false)}
                                 >
-                                    Cancelar envío
-                                </button>
+                                    Cancelar
+                                </Button>
                             </div>
                         )}
                         <TransactionHistory />

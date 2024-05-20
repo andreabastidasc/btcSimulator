@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useToast } from '@chakra-ui/react';
+import {
+    Button,
+    FormControl,
+    FormLabel,
+    Heading,
+    Input,
+    Text,
+    useToast
+} from '@chakra-ui/react';
+
+import styles from './sendBtc.module.scss'
 
 interface SendBTCProps {
     sendBTC: (address: string, amount: number, fee: number) => 'success' | 'error';
@@ -32,28 +42,56 @@ const SendBTC: React.FC<SendBTCProps> = ({ sendBTC, showForm }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Send BTC</h2>
-            <label>
-                Address:
-                <input
-                    onChange={(e) => setAddress(e.target.value)}
+        <form
+            className={styles.form}
+            onSubmit={handleSubmit}
+        >
+            <Heading
+                as='h2'
+                size='md'
+                noOfLines={1}
+                color='purple.700'
+            >
+                Enviar BTC
+            </Heading>
+            <div>
+                <FormLabel>Dirección BTC:</FormLabel>
+                <Input
+                    placeholder='Dirección'
                     required
                     type="text"
                     value={address}
+                    maxLength={12}
+                    onChange={(e) => setAddress(e.target.value)}
                 />
-            </label>
-            <label>
-                Amount:
-                <input
+            </div>
+            <div>
+                <FormLabel>Monto:</FormLabel>
+                <Input
+                    placeholder='Monto'
                     onChange={(e) => setAmount(e.target.value)}
                     required
                     type="number"
                     value={amount}
                 />
-            </label>
-            <p>Comisión: {fee} BTC</p>
-            <button type="submit">Send</button>
+            </div>
+            <Text
+                color='pink.500'
+                fontSize='md'
+                fontWeight='600'
+                marginTop={5}
+            >
+                Comisión: {fee} BTC
+            </Text>
+            <Button
+                background='#5477EA'
+                color='white'
+                colorScheme='pink'
+                marginTop={5}
+                type='submit'
+            >
+                Enviar
+            </Button>
         </form>
     );
 };
