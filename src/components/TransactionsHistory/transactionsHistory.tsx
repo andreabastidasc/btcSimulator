@@ -1,20 +1,52 @@
-import React from 'react';
-import { BtcState, Transaction } from '../../typing/models';
+import { Button, useDisclosure } from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons'
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+
+import {
+    BtcState,
+    Transaction
+} from '../../typing/models';
+import ModalComponent from '../Modal/modal';
+import TransactionDetail from '../TransactionDetail/transactionDetail';
+
 
 const TransactionHistory = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [selectedTransactionId, setSelectedTransactionId]= useState<number | null>(null)
     const transactions = useSelector((state: BtcState) => state.transactions);
+
+    const handleOnClick = (id: number) => {
+        setSelectedTransactionId(id);
+        onOpen();
+    };
 
     return (
         <div>
-            <h2>Transaction History</h2>
-            <ul>
+            <h2>Movimientos</h2>
+            <div>
                 {transactions.map((tx: Transaction) => (
-                    <li key={tx.id}>
-                        {tx.date} - {tx.amount} BTC to {tx.address} ({tx.status})
-                    </li>
+                    <div key={tx.id}>
+                        <p> Transfer </p>
+                        <p>{`-${tx.amount}`} </p>
+                        <p>{tx.status}</p>
+                        <Button onClick={() => handleOnClick(tx.id)}>
+                            <ChevronRightIcon w={5} h={5} color="blackAlpha.600" />
+                        </Button>
+                    </div>
                 ))}
-            </ul>
+                <ModalComponent
+                    isOpen={isOpen}
+                    onClose={onClose}
+                    title="Detalle de la transacción"
+                >
+                    {selectedTransactionId !== null ? (
+                        <TransactionDetail transactionId={selectedTransactionId} />
+                    ) : (
+                        <p>No se ha encontrado la transacción. Intenta más tarde.</p>
+                    )}
+                </ModalComponent>
+            </div>
         </div>
     );
 };
