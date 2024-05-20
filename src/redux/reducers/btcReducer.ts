@@ -1,30 +1,14 @@
-interface Transaction {
-    id: number;
-    address: string;
-    amount: number;
-    fee: number;
-    status: 'success' | 'failed';
-    date: string;
-}
+import {
+    BtcState,
+    Transaction,
+    SendBtcAction
+} from "../../typing/models";
 
-interface BtcState {
-    balance: number;
-    transactions: Transaction[];
-}
-
-interface SendBtcAction {
-    type: 'SEND_BTC';
-    payload: {
-        address: string;
-        amount: number;
-        fee: number;
-    };
-}
 
 type BtcAction = SendBtcAction;
 
 const initialState: BtcState = {
-    balance: 0,
+    balance: 150,
     transactions: [],
 };
 
