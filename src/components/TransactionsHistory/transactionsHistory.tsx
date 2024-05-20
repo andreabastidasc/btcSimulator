@@ -1,4 +1,8 @@
-import { Button, useDisclosure } from '@chakra-ui/react';
+import {
+    Button,
+    Heading,
+    useDisclosure
+} from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -8,6 +12,7 @@ import {
     Transaction
 } from '../../typing/models';
 import ModalComponent from '../Modal/modal';
+import styles from './transactionsHistory.module.scss'
 import TransactionDetail from '../TransactionDetail/transactionDetail';
 
 
@@ -22,19 +27,30 @@ const TransactionHistory = () => {
     };
 
     return (
-        <div>
-            <h2>Movimientos</h2>
+        <div className={styles.history}>
+            <Heading
+                as='h2'
+                size='md'
+                noOfLines={1}
+                color='purple.700'
+            >
+                Movimientos
+            </Heading>
             <div>
-                {transactions.map((tx: Transaction) => (
-                    <div key={tx.id}>
-                        <p> Transfer </p>
-                        <p>{`-${tx.amount}`} </p>
-                        <p>{tx.status}</p>
-                        <Button onClick={() => handleOnClick(tx.id)}>
-                            <ChevronRightIcon w={5} h={5} color="blackAlpha.600" />
-                        </Button>
-                    </div>
-                ))}
+                {transactions.length === 0 ? (
+                    <p>No hay transacciones disponibles.</p>
+                ) : (
+                    transactions.map((tx: Transaction) => (
+                        <div key={tx.id}>
+                            <p> Transfer </p>
+                            <p>{`-${tx.amount}`} </p>
+                            <p>{tx.status}</p>
+                            <Button onClick={() => handleOnClick(tx.id)}>
+                                <ChevronRightIcon w={5} h={5} color="blackAlpha.600" />
+                            </Button>
+                        </div>
+                    ))
+                )}
                 <ModalComponent
                     isOpen={isOpen}
                     onClose={onClose}

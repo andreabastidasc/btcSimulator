@@ -3,10 +3,16 @@ $glass-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 $glass-backdrop-filter: blur(1px);
 $glass-border-radius: 10px;
 
-@mixin glass-background {
+@mixin glass-card {
     background: $glass-background;
     box-shadow: $glass-box-shadow;
     backdrop-filter: $glass-backdrop-filter;
     -webkit-backdrop-filter: $glass-backdrop-filter;
     border-radius: $glass-border-radius;
+    max-width: 415px;
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
