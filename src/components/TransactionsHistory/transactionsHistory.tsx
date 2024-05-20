@@ -1,12 +1,12 @@
 import {
-    Box,
+    Avatar,
     Button,
     Heading,
     Flex,
     Text,
     useDisclosure
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons'
+import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
@@ -49,14 +49,28 @@ const TransactionHistory = () => {
                     </Text>
                 ) : (
                     transactions.map((tx: Transaction) => (
-                        <div key={tx.id}>
-                            <p> Transfer </p>
-                            <p>{`-${tx.amount}`} </p>
-                            <p>{tx.status}</p>
-                            <Button onClick={() => handleOnClick(tx.id)}>
-                                <ChevronRightIcon w={5} h={5} color="blackAlpha.600" />
-                            </Button>
-                        </div>
+                        <Button
+                            border='2px solid'
+                            borderColor='gray.200'
+                            colorScheme='gray'
+                            justifyContent='space-between'
+                            padding='24px 12px'
+                            variant='outline'
+                            w='100%'
+                            onClick={() => handleOnClick(tx.id)}
+                        >
+                            <Avatar size='sm' name={tx.address} />
+                            <Flex
+                                gap={4}
+                            >
+                                <p>{`-${tx.amount} btc`} </p>
+                                {tx.status === 'success' ? (
+                                    <CheckCircleIcon w={5} h={5} color="green.500" />
+                                ) : (
+                                    <WarningIcon w={5} h={5} color="red.500" />
+                                )}
+                            </Flex>
+                        </Button>
                     ))
                 )}
                 <ModalComponent
