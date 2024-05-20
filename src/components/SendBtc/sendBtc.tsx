@@ -5,7 +5,6 @@ import {
 import { useSelector } from 'react-redux';
 import {
     Button,
-    FormControl,
     FormLabel,
     Heading,
     Input,
@@ -42,7 +41,7 @@ const SendBTC: React.FC<SendBTCProps> = ({ sendBTC, showForm }) => {
                 title: 'Error',
                 description: 'No es posible transferir esa cantidad. Intenta con un monto menor.',
                 status: 'error',
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
                 position: 'top'
             });
@@ -54,7 +53,7 @@ const SendBTC: React.FC<SendBTCProps> = ({ sendBTC, showForm }) => {
             title: status === 'success' ? 'Transacción exitosa' : 'Transacción fallida',
             description: status === 'success' ?  'Tu transferencia fue exitosa!' : 'Tuvimos un error al enviar tu dinero',
             status: status,
-            duration: 9000,
+            duration: 3000,
             isClosable: true,
             position: 'top'
         });
